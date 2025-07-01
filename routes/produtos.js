@@ -14,7 +14,6 @@ router.post('/', (req, res, next) => {
     })
 });
 
-
 router.get('/:id_produto', (req, res, next) => {
     const id = req.params.id_produto;
 
@@ -30,6 +29,18 @@ router.get('/:id_produto', (req, res, next) => {
     })
     }
 });
+
+router.patch('/', (req, res, next) => {
+    res.status(201).send({
+        mensagem: 'Aqui rota pacth'
+    })
+})
+
+router.delete('/', (req, res, next) => {
+    res.status(201).send({
+        mensagem: 'Aqui rota Delet'
+    })
+})
 
 
 module.exports = router

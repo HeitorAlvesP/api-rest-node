@@ -1,0 +1,32 @@
+const express = require('express');
+const router = express.Router();
+
+
+router.get('/', (req, res, next) => {
+    res.status(200).send({
+        mensagem: 'Retorna pedidos'
+    })
+});
+
+router.post('/', (req, res, next) => {
+    res.status(201).send({
+        mensagem: 'O pedido foi cirado'
+    })
+});
+
+router.get('/:id_pedido', (req, res, next) => {
+    const id = req.params.id_pedido;
+    res.status(200).send({
+        mensagem: 'Detalhes do padido',
+        id:id
+    })
+});
+
+router.delete('/', (req, res, next) => {
+    res.status(201).send({
+        mensagem: 'Pedido excluido'
+    })
+})
+
+
+module.exports = router
