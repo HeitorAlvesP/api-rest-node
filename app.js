@@ -6,6 +6,14 @@ const bodyParser = require('body-parser')
 const rotaProduto = require('./routes/produtos');
 const rotaPedido = require('./routes/pedidos');
 
+app.use((req, res, next) => {
+    res.header('Acces-Control-Allow-Origin', '*');
+    res.header(
+        'Acces-Control-Allow-Header',
+        'Origin, X-Requested-With, Content-type, Accept, Authorization'
+    )
+})
+
 app.use(morgan('dev')); //biblioteca para dev -- info terminal
 app.use(bodyParser.urlencoded({extended: false})); //dados simples somente
 app.use(bodyParser.json());  //aceita só json
