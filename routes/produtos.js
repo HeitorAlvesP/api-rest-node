@@ -8,11 +8,19 @@ router.get('/', (req, res, next) => {
     })
 });
 
+
 router.post('/', (req, res, next) => {
+    const produto = {
+        nome: req.body.nome,   //o nome q conta para json 
+        preco: req.body.preco //é o nome que está no body
+    }
+
     res.status(201).send({
-        mensagem: 'Usando POST'
+        mensagem: 'Inserir produto',
+        produtoCriado: produto //Retornar o produto
     })
 });
+
 
 router.get('/:id_produto', (req, res, next) => {
     const id = req.params.id_produto;

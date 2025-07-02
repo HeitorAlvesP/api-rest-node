@@ -9,8 +9,14 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+    const pedido ={
+        id_produto: req.body.id_produto,
+        quantidade: req.body.quantidade,
+    }
+
     res.status(201).send({
-        mensagem: 'O pedido foi cirado'
+        mensagem: 'O pedido foi cirado',
+        pedidoCriado: pedido
     })
 });
 
