@@ -3,9 +3,6 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-const openDb = require('./database/configDB');
-openDb();
-
 const rotaProduto = require('./routes/produtos');
 const rotaPedido = require('./routes/pedidos');
 
@@ -32,7 +29,7 @@ app.use('/produtos', rotaProduto);
 app.use('/pedidos', rotaPedido);
 
 app.use((req, res, next) => { //se não cair em rota alguma ou não passar rota cai aqui
-    const erro = new Error('Não encontrado');
+    const erro = new Error('🛑 Não encontrado');
         erro.status = 404;
         next(erro);
 });
