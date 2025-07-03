@@ -15,6 +15,9 @@ async function createTables(db) {
                 criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
 
+            INSERT INTO produtos (nome, preco)
+            VALUES ('Teste_1', 99.90);
+
         `);
 
         console.log("✅ Tabelas criadas");
