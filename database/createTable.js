@@ -1,19 +1,20 @@
 async function createTables(db) {
     try {
-        // Criação das tabelas
         await db.exec(`
+
+            CREATE TABLE IF NOT EXISTS produtos (
+                id_produto INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome VARCHAR(45) NOT NULL,
+                preco FLOAT NOT NULL
+            );
+
             CREATE TABLE IF NOT EXISTS pedidos (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                nome TEXT NOT NULL,
-                quantidade NUMBER NOT NULL,
+                id_produto INTEGER NOT NULL,
+                id_pedido INTEGER PRIMARY KEY AUTOINCREMENT,
+                quantidade INT NOT NULL,
                 criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
 
-            CREATE TABLE IF NOT EXISTS produtos (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                nome TEXT NOT NULL,
-                preco REAL NOT NULL
-            );
         `);
 
         console.log("✅ Tabelas criadas");

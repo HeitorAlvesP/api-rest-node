@@ -15,7 +15,7 @@ async function openDb() {
         });
     
         if (!dbExists) {
-            console.log('Banco criado 📊')
+            console.log('📊 Banco criado')
             await createTables(db);
         }
 
