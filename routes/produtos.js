@@ -2,36 +2,45 @@ const express = require('express');
 const router = express.Router();
 const openDb = require('../database/configDB');
 
+let db;
 
-router.get('/', (req, res, next) => {
-    res.status(200).send({
-        mensagem: 'Usando o GET'
-    })
+
+router.get('/', async (req, res, next) => {
+
+    try {
+        db = await openDb();
+        const query = await db.all(
+            "SELECT * FROM produtos"
+        );
+        res.status(201).send({
+            messagem: 'Produtos listados',
+            Produtos: query
+        })
+    } catch (error) {
+        res.status(500).send({
+            mensagem: "❌ Erro ao listar produto.",
+            erro: error.message
+        });
+        
+    }
 });
 
 
 router.post('/', async (req, res, next) => {
 
-    let db;
-
     try {
-
         const produto = {
-            nome: req.body.nome,   //o nome q conta para json 
-            preco: req.body.preco //é o nome que está no body
+            nome: req.body.nome,  
+            preco: req.body.preco
         };
-
         db = await openDb();
-
         const result = await db.run(
           "INSERT INTO produtos (nome, preco) VALUES (?, ?)",
           [produto.nome, produto.preco]
         );
-        // const result = await openDb.run(query, [produto.nome, produto.preco]);
-
         res.status(201).send({
             mensagem: 'Inserir produto',
-            produtoCriado: produto //Retornar o produto
+            produtoCriado: produto 
         });
 
     } catch (error) {
