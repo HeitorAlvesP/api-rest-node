@@ -1,16 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const openDb = require('../database/configDB');
-const criar_pedido = require('../controllers/controllers_pedidos');
+const { criar_pedido, listar_pedido } = require('../controllers/controllers_pedidos');
 
-let db;
-
-router.get('/', (req, res, next) => {
-    res.status(200).send({
-        mensagem: 'Retorna pedidos'
-    })
-});
-
+router.get('/', listar_pedido);
 router.post('/', criar_pedido);
 
 router.get('/:id_pedido', (req, res, next) => {

@@ -36,4 +36,24 @@ async function criar_pedido (req, res, next){
     }
 }
 
-module.exports = criar_pedido;
+async function listar_pedido(req, res, next) {
+
+    db = await openDb();
+
+    try {
+        const pedidos = await db.all("SELECT * FROM pedidos GROUP BY pedidos.id_pedido");
+        
+        res.status(200).send({
+            mensagem: 'Lista de pedidos',
+            pedidos: pedidos
+        });
+    } catch (error) {
+        console.error("❌ Erro ao listar pedidos:", error.message);
+        res.status(500).send({
+            mensagem: "Erro ao buscar pedidos",
+            erro: error.message
+        });
+    }
+}
+
+module.exports = { criar_pedido, listar_pedido };
