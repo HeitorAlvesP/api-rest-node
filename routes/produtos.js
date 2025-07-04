@@ -34,7 +34,7 @@ router.post('/', async (req, res, next) => {
             preco: req.body.preco
         };
         db = await openDb();
-        const result = await db.run(
+        const query = await db.run(
           "INSERT INTO produtos (nome, preco) VALUES (?, ?)",
           [produto.nome, produto.preco]
         );
