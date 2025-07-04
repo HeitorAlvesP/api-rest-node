@@ -8,7 +8,7 @@ router.post('/', criar_pedido);
 router.get('/:id_pedido', (req, res, next) => {
     const id = req.params.id_pedido;
     res.status(200).send({
-        mensagem: 'Detalhes do padido',
+        mensagem: 'Detalhes do pedido',
         id:id
     })
 });
