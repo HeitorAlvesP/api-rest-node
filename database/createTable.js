@@ -9,8 +9,8 @@ async function createTables(db) {
             );
 
             CREATE TABLE IF NOT EXISTS pedidos (
-                id_produto INTEGER NOT NULL,
                 id_pedido INTEGER PRIMARY KEY AUTOINCREMENT,
+                id_produto INTEGER NOT NULL,
                 quantidade INT NOT NULL,
                 criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );

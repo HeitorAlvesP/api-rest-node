@@ -1,3 +1,6 @@
+const openDb = require('../database/configDB');
+let db;
+
 async function criar_pedido (req, res, next){
         try {
         const pedido ={
